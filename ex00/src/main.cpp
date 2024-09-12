@@ -6,7 +6,7 @@
 /*   By: mbernard <mbernard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:29:57 by mbernard          #+#    #+#             */
-/*   Updated: 2024/09/06 09:30:12 by mbernard         ###   ########.fr       */
+/*   Updated: 2024/09/12 11:28:13 by mbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 static void junior_tests(void) {
   Bureaucrat junior;
-  std::cout << CYAN << "--------------JUNIOR TESTS--------------" << RESET;
+  std::cout << CYAN << "--------------JUNIOR TESTS------------" << RESET;
   std::cout << std::endl;
   std::cout << "Hi ! My name is " << junior.getName();
   std::cout << ", I just beginned so my grade is ";
@@ -36,10 +36,39 @@ static void junior_tests(void) {
   std::cout << "My grade is ";
   std::cout << YELLOW << junior.getGrade() << RESET << " again.";
   std::cout << std::endl;
-  std::cout << CYAN << "--------------------------------------------" << RESET;
+  std::cout << CYAN << "--------------------------------------" << RESET;
   std::cout << std::endl;
   return;
 }
+
+bool   is_full_digits(std::string str) {
+    int    x = 0;
+    int    zeros = 0;
+
+    if (str[0] && str[0] == '-' && str[1]) {
+        x++;
+        zeros++;
+    }
+    while (str[zeros] && str[zeros] == '0')
+        zeros++;
+    while (str[x]) {
+        if (!std::isdigit(str[x])) {
+            std::cout << RED << "ARG 2 MUST BE DIGITS ONLY !" << RESET;
+            std::cout << std::endl;
+            return (0);
+        }
+        if (x - zeros > 8) {
+            std::cout << RED << "VALUE TOO HIGH OR TOO SMALL ! ";
+            std::cout << "PLEASE PROVIDE A NUMBER BETWEEN ";
+            std::cout << "-999999999 and 999999999." << RESET;
+            std::cout << std::endl;
+            return (0);
+        }
+        x++;
+    }
+    return (1);
+}
+
 
 static void check_args(int ac, char **av) {
   if (ac == 1) {
@@ -53,10 +82,7 @@ static void check_args(int ac, char **av) {
     std::cout << RED << "TOO MANY ARGUMENTS !" << RESET;
     std::cout << std::endl;
     exit(1);
-  } else if (!std::isdigit(av[2][0])
-    && (av[2][0] != '-' || (!av[2][1] || !std::isdigit(av[2][1])))) {
-    std::cout << RED << "ARG 2 DOES NOT BEGIN BY A DIGIT !" << RESET;
-    std::cout << std::endl;
+  } else if (!is_full_digits(av[2])) {
     std::cout << "Correct usage : ./Bureaucrat [str] [int]";
     std::cout << std::endl;
     exit(1);
