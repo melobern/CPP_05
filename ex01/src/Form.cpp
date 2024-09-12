@@ -6,7 +6,7 @@
 /*   By: mbernard <mbernard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 12:06:17 by mbernard          #+#    #+#             */
-/*   Updated: 2024/09/12 17:21:49 by mbernard         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:33:14 by mbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -72,4 +72,8 @@ int const& Form::getGradeToSign(void) const {
 
 int const& Form::getGradeToExec(void) const {
     return (this->_gradeToExec);
+}
+
+bool const& Form::getSignedStatus(void) const {
+    return (this->_signed);
 }

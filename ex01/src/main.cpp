@@ -6,7 +6,7 @@
 /*   By: mbernard <mbernard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:29:57 by mbernard          #+#    #+#             */
-/*   Updated: 2024/09/12 17:25:30 by mbernard         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:46:52 by mbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,16 @@ static void check_args(int ac, char **av) {
     }
 }
 
+static void printFormStatus(Form *form) {
+    if (form->getSignedStatus())
+        std::cout << "The form " << form->getName() << " is signed";
+    else
+        std::cout << "The form " << form->getName() << " is NOT signed";
+    std::cout << std::endl;
+}
+
 static void employee_test(Bureaucrat *bureaucrat, Form *form) {
+    printFormStatus(form);
     std::cout << "Hi ! My name is " << bureaucrat->getName();
     std::cout << ", I'm a bureaucrat of grade ";
     std::cout << YELLOW << bureaucrat->getGrade() << RESET << " !";
@@ -66,6 +75,7 @@ static void employee_test(Bureaucrat *bureaucrat, Form *form) {
     std::cout << "I'm trying to sign the " << bureaucrat->getName() << " form.";
     std::cout << std::endl;
     bureaucrat->signForm(form);
+    printFormStatus(form);
     std::cout << std::endl;
 }
 
@@ -75,7 +85,18 @@ int main(int ac, char **av) {
     Bureaucrat middle("Middle", 75);
     Bureaucrat senior("Senior", 1);
     Form       form(av[1], atoi(av[2]), atoi(av[3]));
+    Form       juniorForm("SimpleForm", 150, 150);
+    Form       middleForm("MiddleForm", 75, 75);
+    Form       seniorForm("SeniorForm", 1, 1);
 
+    try {
+        employee_test(&junior, &juniorForm);
+        employee_test(&middle, &middleForm);
+        employee_test(&senior, &seniorForm);
+    } catch (std::exception & e) {
+        std::cerr << "Exiting main" << std::endl;
+        return (1);
+    }
     try {
         employee_test(&senior, &form);
         employee_test(&middle, &form);
