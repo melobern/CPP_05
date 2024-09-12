@@ -6,7 +6,7 @@
 /*   By: mbernard <mbernard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 12:06:17 by mbernard          #+#    #+#             */
-/*   Updated: 2024/09/12 17:27:42 by mbernard         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:32:35 by mbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ class Form {
   std::string const &getName(void) const;
   int const         &getGradeToSign(void) const;
   int const         &getGradeToExec(void) const;
+  bool const         &getSignedStatus(void) const;
   void              beSigned(const Bureaucrat &bureaucrat);
   class GradeTooLowException : public std::exception {
    public:
