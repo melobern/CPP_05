@@ -6,7 +6,7 @@
 /*   By: mbernard <mbernard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:29:57 by mbernard          #+#    #+#             */
-/*   Updated: 2024/09/12 17:46:52 by mbernard         ###   ########.fr       */
+/*   Updated: 2024/09/15 13:43:36 by mbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void check_args(int ac, char **av) {
     if (ac != 4) {
         std::cout << RED << "Incorrect number of arguments !" << RESET;
         std::cout << std::endl;
-        std::cout << "Correct usage : ./Form [str] [int]";
+        std::cout << "Correct usage : ./Form [str] [int] [int]";
         std::cout << std::endl;
         exit(1);
     } else if (!is_full_digits(av[2]) || !is_full_digits(av[3])) {
@@ -72,7 +72,7 @@ static void employee_test(Bureaucrat *bureaucrat, Form *form) {
     std::cout << ", I'm a bureaucrat of grade ";
     std::cout << YELLOW << bureaucrat->getGrade() << RESET << " !";
     std::cout << std::endl;
-    std::cout << "I'm trying to sign the " << bureaucrat->getName() << " form.";
+    std::cout << "I'm trying to sign the " << form->getName() << " form.";
     std::cout << std::endl;
     bureaucrat->signForm(form);
     printFormStatus(form);
@@ -85,9 +85,9 @@ int main(int ac, char **av) {
     Bureaucrat middle("Middle", 75);
     Bureaucrat senior("Senior", 1);
     Form       form(av[1], atoi(av[2]), atoi(av[3]));
-    Form       juniorForm("SimpleForm", 150, 150);
-    Form       middleForm("MiddleForm", 75, 75);
-    Form       seniorForm("SeniorForm", 1, 1);
+    Form       juniorForm("Simple", 150, 150);
+    Form       middleForm("Middle", 75, 75);
+    Form       seniorForm("Senior", 1, 1);
 
     try {
         employee_test(&junior, &juniorForm);
