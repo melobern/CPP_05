@@ -6,7 +6,7 @@
 /*   By: mbernard <mbernard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 12:06:17 by mbernard          #+#    #+#             */
-/*   Updated: 2024/09/12 17:33:14 by mbernard         ###   ########.fr       */
+/*   Updated: 2024/09/15 13:59:50 by mbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -22,6 +22,10 @@ Form::Form(std::string const &name, int gradeToSign, int gradeToExec)
       _signed(false),
       _gradeToSign(gradeToSign),
       _gradeToExec(gradeToExec) {
+    if (gradeToSign < 1 || gradeToExec < 1)
+        throw Form::GradeTooHighException();
+    else if (gradeToSign > 150 || gradeToExec > 150)
+        throw Form::GradeTooLowException();
     return;
 }
 

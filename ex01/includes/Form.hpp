@@ -6,7 +6,7 @@
 /*   By: mbernard <mbernard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 12:06:17 by mbernard          #+#    #+#             */
-/*   Updated: 2024/09/12 17:32:35 by mbernard         ###   ########.fr       */
+/*   Updated: 2024/09/15 13:56:06 by mbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ class Form {
    public:
       const char* what() const throw() {
         return ("grade is too low !");
+      }
+  };
+  class GradeTooHighException : public std::exception {
+   public:
+      const char* what() const throw() {
+        return ("grade is too high !");
       }
   };
 };

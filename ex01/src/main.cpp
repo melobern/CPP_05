@@ -6,7 +6,7 @@
 /*   By: mbernard <mbernard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:29:57 by mbernard          #+#    #+#             */
-/*   Updated: 2024/09/15 13:43:36 by mbernard         ###   ########.fr       */
+/*   Updated: 2024/09/15 14:07:20 by mbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,26 +81,28 @@ static void employee_test(Bureaucrat *bureaucrat, Form *form) {
 
 int main(int ac, char **av) {
     check_args(ac, av);
-    Bureaucrat junior("Junior", 150);
-    Bureaucrat middle("Middle", 75);
-    Bureaucrat senior("Senior", 1);
-    Form       form(av[1], atoi(av[2]), atoi(av[3]));
-    Form       juniorForm("Simple", 150, 150);
-    Form       middleForm("Middle", 75, 75);
-    Form       seniorForm("Senior", 1, 1);
-
     try {
+        Bureaucrat junior("Junior", 150);
+        Bureaucrat middle("Middle", 75);
+        Bureaucrat senior("Senior", 1);
+        Form       form(av[1], atoi(av[2]), atoi(av[3]));
+        Form       juniorForm("Simple", 150, 150);
+        Form       middleForm("Middle", 75, 75);
+        Form       seniorForm("Senior", 1, 1);
         employee_test(&junior, &juniorForm);
         employee_test(&middle, &middleForm);
         employee_test(&senior, &seniorForm);
-    } catch (std::exception & e) {
-        std::cerr << "Exiting main" << std::endl;
-        return (1);
-    }
-    try {
         employee_test(&senior, &form);
         employee_test(&middle, &form);
         employee_test(&junior, &form);
+    } catch (Form::GradeTooHighException& e) {
+        std::cerr << "Error : " << e.what() << std::endl;
+        std::cerr << "Exiting main" << std::endl;
+        return (1);
+    } catch (Form::GradeTooLowException& e) {
+        std::cerr << "Error : " << e.what() << std::endl;
+        std::cerr << "Exiting main" << std::endl;
+        return (1);
     } catch (std::exception & e) {
         std::cerr << "Exiting main" << std::endl;
         return (1);
