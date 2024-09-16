@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 #include <stdlib.h>
 #include "../includes/AForm.hpp"
-#include "AForm.hpp"
 
 AForm::AForm(void)
     : _name("aform"), _signed(false), _gradeToSign(20), _gradeToExec(20) {

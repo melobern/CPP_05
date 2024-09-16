@@ -91,6 +91,7 @@ void              Bureaucrat::decrementGrade(void) {
     this->_grade++;
     return;
 }
+
 void    Bureaucrat::signAForm(AForm *aform) {
     try {
         aform->beSigned(*this);
@@ -100,5 +101,17 @@ void    Bureaucrat::signAForm(AForm *aform) {
         return;
     }
     std::cout << GREEN << this->getName() << " signed " << aform->getName();
+    std::cout << RESET << std::endl;
+}
+
+void    Bureaucrat::executeForm(AForm const &form) const {
+    try {
+        form.execute(*this);
+    }
+    catch (std::exception &e) {
+        throw e;
+        return;
+    }
+    std::cout << GREEN << this->getName() << " executed " << form.getName();
     std::cout << RESET << std::endl;
 }
