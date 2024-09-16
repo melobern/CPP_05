@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EX02_INCLUDES_PRESIDENTIALPARDONFORM_HPP_
-#define EX02_INCLUDES_PRESIDENTIALPARDONFORM_HPP_
+#ifndef EX03_INCLUDES_PRESIDENTIALPARDONFORM_HPP_
+#define EX03_INCLUDES_PRESIDENTIALPARDONFORM_HPP_
 # include <iostream>
 # include <string>
 # include <stdexcept>
@@ -32,4 +32,4 @@ class PresidentialPardonForm  : public AForm {
   virtual void              execute(Bureaucrat const &executor) const;
 };
 
-#endif  // EX02_INCLUDES_PRESIDENTIALPARDONFORM_HPP_
+#endif  // EX03_INCLUDES_PRESIDENTIALPARDONFORM_HPP_

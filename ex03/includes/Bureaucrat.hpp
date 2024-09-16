@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EX02_INCLUDES_BUREAUCRAT_HPP_
-#define EX02_INCLUDES_BUREAUCRAT_HPP_
+#ifndef EX03_INCLUDES_BUREAUCRAT_HPP_
+#define EX03_INCLUDES_BUREAUCRAT_HPP_
 # include <iostream>
 # include <string>
 # include <stdexcept>
@@ -55,4 +55,4 @@ class Bureaucrat {
   };
 };
 
-#endif  //  EX02_INCLUDES_BUREAUCRAT_HPP_
+#endif  //  EX03_INCLUDES_BUREAUCRAT_HPP_

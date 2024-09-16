@@ -1,7 +1,7 @@
 /* Copyright 2024 <mbernard>************************************************* */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*   Intern.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbernard <mbernard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,108 +10,55 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
-#include "../includes/Bureaucrat.hpp"
+#include "../includes/Intern.hpp"
 #include "../includes/AForm.hpp"
+#include "../includes/RobotomyRequestForm.hpp"
+#include "../includes/PresidentialPardonForm.hpp"
+#include "../includes/ShrubberyCreationForm.hpp"
 
 #define GREEN "\033[0;32m"
 
-Bureaucrat::Bureaucrat(void) : _name("Junior"), _grade(150) {
+Intern::Intern(void) {
     return;
 }
 
-Bureaucrat::Bureaucrat(std::string const &name, int grade)
-            : _name(name) {
-    try {
-        if (grade < 1) {
-            throw GradeTooHighException();
-        } else if (grade > 150) {
-            throw GradeTooLowException();
-        }
-    }
-    catch (std::exception & e) {
-        std::cerr << e.what() << std::endl;
-        throw e;
-        return;
-    }
-    this->_grade = grade;
+Intern::Intern(const Intern &intern) {
+    *this = intern;
     return;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat) {
-    *this = bureaucrat;
-    return;
-}
-
-Bureaucrat& Bureaucrat::operator=(Bureaucrat const &bureaucrat)  {
-    if (this != &bureaucrat) {
-        this->_name = bureaucrat._name;
-        this->_grade = bureaucrat._grade;
-    }
+Intern& Intern::operator=(Intern const &intern) {
+    (void)intern;
     return (*this);
 }
 
-Bureaucrat::~Bureaucrat() {
+Intern::~Intern() {
     return;
 }
 
-std::string const& Bureaucrat::getName(void) const {
-    return (this->_name);
-}
+AForm* Intern::makeForm(std::string const &name, std::string const &target) {
+    std::string tab[3] = {
+        "robotomy request",
+        "presidential pardon",
+        "shrubbery creation"};
 
-int const& Bureaucrat::getGrade(void) const {
-    return (this->_grade);
-}
-
-void              Bureaucrat::incrementGrade(void) {
-    try {
-        if (this->_grade - 1 < 1) {
-            throw GradeTooHighException();
+    int i = 0;
+    while (i < 3) {
+        if (name == tab[i]) {
+            std::cout << GREEN << "Intern creates " << name;
+            std::cout << "." << RESET << std::endl;
+            break;
         }
+        i++;
     }
-    catch (std::exception & e) {
-        std::cerr << e.what() << std::endl;
-        throw e;
-        return;
+    switch (i) {
+        case 0:
+            return new RobotomyRequestForm(target);
+        case 1:
+            return new PresidentialPardonForm(target);
+        case 2:
+            return new ShrubberyCreationForm(target);
+        default:
+            throw AForm::InvalidFormNameException();
     }
-    this->_grade--;
-    return;
-}
-
-void              Bureaucrat::decrementGrade(void) {
-    try {
-        if (this->_grade + 1 > 150) {
-            throw GradeTooLowException();
-        }
-    }
-    catch (std::exception & e) {
-        std::cerr << e.what() << std::endl;
-        throw e;
-        return;
-    }
-    this->_grade++;
-    return;
-}
-
-void    Bureaucrat::signAForm(AForm *aform) {
-    try {
-        aform->beSigned(*this);
-    }
-    catch (std::exception & e) {
-        throw e;
-        return;
-    }
-    std::cout << GREEN << this->getName() << " signed " << aform->getName();
-    std::cout << RESET << std::endl;
-}
-
-void    Bureaucrat::executeForm(AForm const &form) const {
-    try {
-        form.execute(*this);
-    }
-    catch (std::exception &e) {
-        throw e;
-        return;
-    }
-    std::cout << GREEN << this->getName() << " executed " << form.getName();
-    std::cout << RESET << std::endl;
 }
