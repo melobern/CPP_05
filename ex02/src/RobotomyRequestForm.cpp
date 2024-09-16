@@ -13,12 +13,12 @@
 #include "../includes/RobotomyRequestForm.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm(void)
-    : AForm("Shrubbery Creation Form", 72, 45), _target("default") {
+    : AForm("Robotomy Request Form", 72, 45), _target("default") {
     return;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string const &target)
-    : AForm("Shrubbery Creation Form", 72, 75), _target(target) {
+    : AForm("Robotomy Request Form", 72, 75), _target(target) {
     return;
 }
 
@@ -27,7 +27,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &aform)
     return;
 }
 
-RobotomyRequestForm& RobotomyRequestForm::operator=(RobotomyRequestForm const &aform)  {
+RobotomyRequestForm& RobotomyRequestForm::operator=(RobotomyRequestForm const &aform) {
     if (this != &aform) {
         this->_target = aform._target;
     }
@@ -42,11 +42,10 @@ std::string const &RobotomyRequestForm::getTarget(void) const {
     return (this->_target);
 }
 
-void RobotomyRequestForm::execute(Bureaucrat const &executor) const
-{
+void RobotomyRequestForm::execute(Bureaucrat const &executor) const {
     try {
         if (!this->getSignedStatus()) {
-            throw FormNotSignedException(); 
+            throw FormNotSignedException();
         } else if (executor.getGrade() > this->getGradeToExec()) {
             throw GradeTooLowException();
         }
@@ -58,14 +57,14 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const
         throw e;
         return;
     }
-    std::cout << "🚧⚒️ RRRRRRR 🏗️ (Drilling noise)🏗️ ⚙️ 🔨🔧🚧" << std::endl;
+    std::cout << "🚧⚒️  RRRRRRRRRRRR 🏗️ (Drilling noise)🏗️ ⚙️ 🔨🔧🚧" << std::endl;
     int random = rand() % 2;
     if (random == 1) {
-        std::cout << "🚧⚒️ " << this->getTarget();
+        std::cout << "⚙️ ⚙️  " << this->getTarget();
         std::cout << " has been robotomized successfully 🦾🤖✅" << std::endl;
     } else {
-        std::cout << "🚧⚒️ " << this->getTarget();
-        std::cout << " robotomization failed ❌" << std::endl;
+        std::cout << "💥💥 " << this->getTarget();
+        std::cout << " robotomization failed 😵❌" << std::endl;
     }
     return;
 }

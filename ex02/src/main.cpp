@@ -15,6 +15,7 @@
 #include "../includes/AForm.hpp"
 #include "../includes/ShrubberyCreationForm.hpp"
 #include "../includes/RobotomyRequestForm.hpp"
+#include "../includes/PresidentialPardonForm.hpp"
 
 #define CYAN "\033[0;36m"
 
@@ -30,11 +31,11 @@ static void shrubberyTests(void) {
         homeTrees.beSigned(senior);
         metalTrees.beSigned(senior);
         fireTrees.beSigned(middle);
-        homeTrees.execute(senior);
-        metalTrees.execute(middle);
-        fireTrees.execute(junior);
+        senior.executeForm(homeTrees);
+        middle.executeForm(metalTrees);
+        junior.executeForm(fireTrees);
     } catch (std::exception &e) {
-        std::cerr << "Error detected : stopping Shrubbery Tests" << std::endl;
+        std::cerr << "Error detected : stopping Shrubbery Tests." << std::endl;
         return;
     }
 }
@@ -42,18 +43,33 @@ static void shrubberyTests(void) {
 static void robotsTests(void) {
     Bureaucrat junior("Junior", 150);
     Bureaucrat middle("Middle", 75);
-    Bureaucrat senior("Senior", 1);\
-    RobotomyRequestForm robotomy("Robotomy");
+    Bureaucrat senior("Senior", 1);
+    RobotomyRequestForm robotomy("Tomy");
 
     try {
         robotomy.beSigned(senior);
         for (int i = 0; i < 10; i++) {
-            robotomy.execute(senior);
+             senior.executeForm(robotomy);
         }
-        robotomy.execute(middle);
-        robotomy.execute(junior);
+        middle.executeForm(robotomy);
+        junior.executeForm(robotomy);
     } catch (std::exception & e) {
-        std::cerr << "Error detected : stopping Robotomy Tests" << std::endl;
+        std::cerr << "Error detected : stopping Robotomy Tests." << std::endl;
+        return;
+    }
+}
+
+static void presidentTests(void) {
+    Bureaucrat senior("Senior", 1);
+    Bureaucrat middle("Middle", 75);
+    PresidentialPardonForm pardon("Marvin");
+
+    try {
+        pardon.beSigned(senior);
+        senior.executeForm(pardon);
+        middle.executeForm(pardon);
+    } catch (std::exception & e) {
+        std::cerr << "Error detected : stopping President Tests." << std::endl;
         return;
     }
 }
@@ -62,9 +78,13 @@ int main(void) {
     std::cout << CYAN << "-------Shrubbery tests-------" << RESET << std::endl;
     shrubberyTests();
     std::cout << CYAN << "-----------------------------" << RESET << std::endl;
-    std::cout << std::endl;
-    std::cout << CYAN << "-------Robots tests-------" << RESET << std::endl;
+
+    std::cout << CYAN << "---------Robot tests---------" << RESET << std::endl;
     robotsTests();
+    std::cout << CYAN << "-----------------------------" << RESET << std::endl;
+
+    std::cout << CYAN << "-------President tests-------" << RESET << std::endl;
+    presidentTests();
     std::cout << CYAN << "-----------------------------" << RESET << std::endl;
     return (0);
 }

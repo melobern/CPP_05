@@ -17,8 +17,8 @@ MKDIR = mkdir -p
 RMDIR = rm -rf
 
 # ---------------------------------- Sources --------------------------------- #
-HEADER = Bureaucrat AForm ShrubberyCreationForm RobotomyRequestForm #PresidentialPardonForm
-SRCS = main Bureaucrat AForm ShrubberyCreationForm RobotomyRequestForm #PresidentialPardonForm
+HEADER = Bureaucrat AForm ShrubberyCreationForm RobotomyRequestForm PresidentialPardonForm
+SRCS = main Bureaucrat AForm ShrubberyCreationForm RobotomyRequestForm PresidentialPardonForm
 
 # ---------------------------------- Repertories ----------------------------- #
 HEADERS_DIR = includes/
