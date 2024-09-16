@@ -78,10 +78,12 @@ int main(void) {
     std::cout << CYAN << "-------Shrubbery tests-------" << RESET << std::endl;
     shrubberyTests();
     std::cout << CYAN << "-----------------------------" << RESET << std::endl;
+    std::cout << std::endl;
 
     std::cout << CYAN << "---------Robot tests---------" << RESET << std::endl;
     robotsTests();
     std::cout << CYAN << "-----------------------------" << RESET << std::endl;
+    std::cout << std::endl;
 
     std::cout << CYAN << "-------President tests-------" << RESET << std::endl;
     presidentTests();
