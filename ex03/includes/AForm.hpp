@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EX02_INCLUDES_AFORM_HPP_
-#define EX02_INCLUDES_AFORM_HPP_
+#ifndef EX03_INCLUDES_AFORM_HPP_
+#define EX03_INCLUDES_AFORM_HPP_
 # include <iostream>
 # include <string>
 # include <stdexcept>
@@ -29,7 +29,7 @@ class AForm {
  public:
   AForm(std::string const &name, int gradeToSign, int gradeToExec);
   AForm(const AForm &aform);
-  ~AForm();
+  virtual ~AForm();
 
   std::string const &getName(void) const;
   int const         &getGradeToSign(void) const;
@@ -55,6 +55,12 @@ class AForm {
         return ("this form is not signed !");
       }
   };
+  class InvalidFormNameException : public std::exception {
+   public:
+      virtual const char* what() const throw() {
+        return ("Form name not found !");
+      }
+  };
 };
 
-#endif  //  EX02_INCLUDES_AFORM_HPP_
+#endif  //  EX03_INCLUDES_AFORM_HPP_
