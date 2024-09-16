@@ -6,7 +6,7 @@
 /*   By: mbernard <mbernard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 12:06:17 by mbernard          #+#    #+#             */
-/*   Updated: 2024/09/15 13:56:06 by mbernard         ###   ########.fr       */
+/*   Updated: 2024/09/16 08:49:12 by mbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include <iostream>
 # include <string>
 # include <stdexcept>
-# include "Form.hpp"
 # include "../includes/Bureaucrat.hpp"
 
 class Form {
