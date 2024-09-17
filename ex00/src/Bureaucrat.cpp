@@ -88,3 +88,19 @@ void              Bureaucrat::decrementGrade(void) {
     this->_grade++;
     return;
 }
+
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
+    return ("Error : Grade too high !");
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
+    return ("Error : Grade too low !");
+}
+
+std::ostream &operator<<(std::ostream &out, Bureaucrat const &bureaucrat) {
+    out << "My name is " << BRIGHT_YELLOW << bureaucrat.getName() << RESET;
+    out << ", I'm a bureaucrat of grade ";
+    out << YELLOW << bureaucrat.getGrade() << RESET << " !";
+    out << std::endl;
+    return (out);
+}

@@ -13,8 +13,6 @@
 #include "../includes/Bureaucrat.hpp"
 #include "../includes/AForm.hpp"
 
-#define GREEN "\033[0;32m"
-
 Bureaucrat::Bureaucrat(void) : _name("Junior"), _grade(150) {
     return;
 }
@@ -114,4 +112,20 @@ void    Bureaucrat::executeForm(AForm const &form) const {
     }
     std::cout << GREEN << this->getName() << " executed " << form.getName();
     std::cout << RESET << std::endl;
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
+    return ("Error : Grade too high !");
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
+    return ("Error : Grade too low !");
+}
+
+std::ostream &operator<<(std::ostream &out, Bureaucrat const &bureaucrat) {
+    out << "My name is " << BRIGHT_YELLOW << bureaucrat.getName() << RESET;
+    out << ", I'm a bureaucrat of grade ";
+    out << YELLOW << bureaucrat.getGrade() << RESET << " !";
+    out << std::endl;
+    return (out);
 }

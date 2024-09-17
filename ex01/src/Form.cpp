@@ -81,3 +81,23 @@ int const& Form::getGradeToExec(void) const {
 bool const& Form::getSignedStatus(void) const {
     return (this->_signed);
 }
+
+const char* Form::GradeTooLowException::what() const throw() {
+    return ("grade is too low !");
+}
+
+const char* Form::GradeTooHighException::what() const throw() {
+    return ("grade is too high !");
+}
+
+std::ostream& operator<<(std::ostream &out, Form const &form) {
+    out << "Form " << BLUE << form.getName() << RESET << " is ";
+    if (form.getSignedStatus())
+        out << GREEN << "signed" << RESET;
+    else
+        out << RED << "not signed" << RESET;
+    out << " and requires grade " << MAGENTA << form.getGradeToSign() << RESET;
+    out << " to sign and grade " << MAGENTA << form.getGradeToExec() << RESET;
+    out << " to execute." << std::endl;
+    return (out);
+}
