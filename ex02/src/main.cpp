@@ -19,6 +19,19 @@
 
 #define CYAN "\033[0;36m"
 
+static void notSignedTests(void) {
+    Bureaucrat absentminded("Absent Minded", 1);
+    ShrubberyCreationForm homeTrees("Home");
+
+    std::cout << absentminded;
+    try {
+        absentminded.executeForm(homeTrees);
+    } catch (std::exception &e) {
+        std::cerr << "Error detected : stopping Not Signed Tests." << std::endl;
+        return;
+    }
+}
+
 static void shrubberyTests(void) {
     Bureaucrat junior("Junior", 150);
     Bureaucrat middle("Middle", 75);
@@ -27,6 +40,7 @@ static void shrubberyTests(void) {
     ShrubberyCreationForm metalTrees("Metal");
     ShrubberyCreationForm fireTrees("Fire");
 
+    std::cout << junior << middle << senior;
     try {
         homeTrees.beSigned(senior);
         metalTrees.beSigned(senior);
@@ -75,6 +89,11 @@ static void presidentTests(void) {
 }
 
 int main(void) {
+    std::cout << CYAN << "-------Not signed test-------" << RESET << std::endl;
+    notSignedTests();
+    std::cout << CYAN << "-----------------------------" << RESET << std::endl;
+    std::cout << std::endl;
+
     std::cout << CYAN << "-------Shrubbery tests-------" << RESET << std::endl;
     shrubberyTests();
     std::cout << CYAN << "-----------------------------" << RESET << std::endl;

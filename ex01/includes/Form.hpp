@@ -16,6 +16,8 @@
 # include <string>
 # include <stdexcept>
 # include "../includes/Bureaucrat.hpp"
+# define BLUE "\033[94m"
+# define MAGENTA "\033[35m"
 
 class Form {
  private:
@@ -34,20 +36,18 @@ class Form {
   std::string const &getName(void) const;
   int const         &getGradeToSign(void) const;
   int const         &getGradeToExec(void) const;
-  bool const         &getSignedStatus(void) const;
+  bool const        &getSignedStatus(void) const;
   void              beSigned(const Bureaucrat &bureaucrat);
   class GradeTooLowException : public std::exception {
    public:
-      const char* what() const throw() {
-        return ("grade is too low !");
-      }
+      const char* what() const throw();
   };
   class GradeTooHighException : public std::exception {
    public:
-      const char* what() const throw() {
-        return ("grade is too high !");
-      }
+      const char* what() const throw();
   };
 };
+
+std::ostream &operator<<(std::ostream &out, Form const &form);
 
 #endif  //  EX01_INCLUDES_FORM_HPP_

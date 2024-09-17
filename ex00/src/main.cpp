@@ -14,8 +14,7 @@
 #include "../includes/Bureaucrat.hpp"
 
 #define CYAN "\033[0;36m"
-#define YELLOW "\033[0;33m"
-#define promotion "\033[0;32m promotion \033[0m"
+#define promotion "\033[0;92m promotion \033[0m"
 #define demotion "\033[0;31m demotion \033[0m"
 
 static void junior_tests(void) {
@@ -97,10 +96,7 @@ int main(int ac, char **av) {
         junior_tests();
         std::cout << CYAN << "--------------ARGS TESTS--------------" << RESET;
         std::cout << std::endl;
-        std::cout << "Hi ! My name is " << paperLover.getName();
-        std::cout << ", I'm a bureaucrat of grade ";
-        std::cout << YELLOW << paperLover.getGrade() << RESET << " !";
-        std::cout << std::endl;
+        std::cout << paperLover;
         std::cout << "Feel free to give me all necessary papers...";
         std::cout << std::endl;
         paperLover.incrementGrade();
@@ -118,11 +114,8 @@ int main(int ac, char **av) {
         std::cout << CYAN << "--------------TWIN TESTS--------------" << RESET;
         std::cout << std::endl;
         Bureaucrat twin = paperLover;
-        std::cout << "Hi, I'm " << paperLover.getName();
-        std::cout << "'s twin, my name is also ";
-        std::cout << twin.getName() << ". My grade is ";
-        std::cout << YELLOW << twin.getGrade() << RESET << ".";
-        std::cout << std::endl;
+        std::cout << "Hi ! I'm the twin of " << paperLover.getName() << " ! ";
+        std::cout << twin;
         std::cout << CYAN << "--------------------------------------" << RESET;
         std::cout << std::endl;
     }

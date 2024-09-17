@@ -17,8 +17,10 @@
 # include <stdexcept>
 # include "Bureaucrat.hpp"
 
+#define GREEN "\033[0;32m"
 #define RED "\033[31m"
 #define YELLOW "\033[0;33m"
+#define BRIGHT_YELLOW "\033[1;93m"
 #define RESET "\033[0m"
 
 class AForm;
@@ -43,16 +45,14 @@ class Bureaucrat {
   void              executeForm(AForm const &form) const;
   class GradeTooHighException : public std::exception {
    public:
-      const char* what() const throw() {
-        return ("Error : Grade too high !");
-      }
+      const char* what() const throw();
   };
   class GradeTooLowException : public std::exception {
    public:
-      const char* what() const throw() {
-        return ("Error : Grade too low !");
-      }
+      const char* what() const throw();
   };
 };
+
+std::ostream &operator<<(std::ostream &out, Bureaucrat const &bureaucrat);
 
 #endif  //  EX03_INCLUDES_BUREAUCRAT_HPP_

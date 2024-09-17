@@ -16,6 +16,8 @@
 # include <string>
 # include <stdexcept>
 # include "../includes/Bureaucrat.hpp"
+# define BLUE "\033[94m"
+# define MAGENTA "\033[35m"
 
 class AForm {
  private:
@@ -39,22 +41,22 @@ class AForm {
   virtual void              execute(Bureaucrat const &executor) const = 0;
   class GradeTooLowException : public std::exception {
    public:
-      virtual const char* what() const throw() {
-        return ("grade is too low !");
-      }
+      const char* what() const throw();
   };
   class GradeTooHighException : public std::exception {
    public:
-      virtual const char* what() const throw() {
-        return ("grade is too high !");
-      }
+      const char* what() const throw();
   };
   class FormNotSignedException : public std::exception {
    public:
-      virtual const char* what() const throw() {
-        return ("this form is not signed !");
-      }
+      const char* what() const throw();
+  };
+  class InvalidFormNameException : public std::exception {
+   public:
+      const char* what() const throw();
   };
 };
+
+std::ostream &operator<<(std::ostream &out, AForm const &form);
 
 #endif  //  EX02_INCLUDES_AFORM_HPP_

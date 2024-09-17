@@ -81,3 +81,31 @@ int const& AForm::getGradeToExec(void) const {
 bool const& AForm::getSignedStatus(void) const {
     return (this->_signed);
 }
+
+const char* AForm::GradeTooLowException::what() const throw() {
+    return ("grade is too low !");
+}
+
+const char* AForm::GradeTooHighException::what() const throw() {
+    return ("grade is too high !");
+}
+
+const char* AForm::FormNotSignedException::what() const throw() {
+    return ("this form is not signed !");
+}
+
+const char* AForm::InvalidFormNameException::what() const throw() {
+    return ("Form name not found !");
+}
+
+std::ostream& operator<<(std::ostream &out, AForm const &form) {
+    out << "Form " << BLUE << form.getName() << RESET << " is ";
+    if (form.getSignedStatus())
+        out << GREEN << "signed" << RESET;
+    else
+        out << RED << "not signed" << RESET;
+    out << " and requires grade " << MAGENTA << form.getGradeToSign() << RESET;
+    out << " to sign and grade " << MAGENTA << form.getGradeToExec() << RESET;
+    out << " to execute." << std::endl;
+    return (out);
+}
