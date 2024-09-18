@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <cstdlib>
 #include "../includes/Bureaucrat.hpp"
 
 #define CYAN "\033[0;36m"

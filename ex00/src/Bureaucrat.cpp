@@ -9,7 +9,7 @@
 /*   Updated: 2024/09/06 09:45:11 by mbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+#include <cstdlib>
 #include "../includes/Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat(void) : _name("Junior"), _grade(150) {

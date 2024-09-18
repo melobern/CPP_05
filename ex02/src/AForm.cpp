@@ -9,7 +9,7 @@
 /*   Updated: 2024/09/15 13:59:50 by mbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+#include <cstdlib>
 #include "../includes/AForm.hpp"
 
 AForm::AForm(void)
