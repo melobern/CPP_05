@@ -9,7 +9,7 @@
 /*   Updated: 2024/09/12 17:24:43 by mbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+#include <cstdlib>
 #include "../includes/Bureaucrat.hpp"
 #include "../includes/Form.hpp"
 
